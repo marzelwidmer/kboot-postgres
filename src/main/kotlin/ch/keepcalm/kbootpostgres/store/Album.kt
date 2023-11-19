@@ -1,4 +1,4 @@
-package ch.keepcalm.kbootpostgres
+package ch.keepcalm.kbootpostgres.store
 
 import jakarta.validation.constraints.NotEmpty
 import org.springframework.data.annotation.Id
@@ -9,8 +9,8 @@ class Album(
     @Id
     val id: UUID,
     @NotEmpty
-    val userId: String,
+    val userId: Int,
     @NotEmpty
-    val title: String,
+    val albumId: Int,
     @Version val version: Int?
 )

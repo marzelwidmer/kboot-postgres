@@ -1,5 +1,7 @@
 package ch.keepcalm.kbootpostgres
 
+import ch.keepcalm.kbootpostgres.store.Album
+import ch.keepcalm.kbootpostgres.store.AlbumRepository
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -28,7 +30,7 @@ internal class PostgresTestContainerTests(
 
    @BeforeEach
     fun setUp() {
-       val albumList = listOf(Album(UUID.randomUUID(), "justAUserId", "just a title", version = null))
+       val albumList = listOf(Album(id = UUID.randomUUID(), userId = 2, albumId = 1, version = null))
        repository.saveAll(albumList)
     }
 
@@ -44,7 +46,7 @@ internal class PostgresTestContainerTests(
     fun `check if something in list of a Posts with filtering`() {
         assertThat(repository.findAll()).filteredOn {
             album ->
-            album.title == "just a title"
+            album.userId == 2
         }
     }
 }
