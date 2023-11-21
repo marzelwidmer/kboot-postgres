@@ -1,5 +1,7 @@
 package ch.keepcalm.kbootpostgres
 
+import ch.keepcalm.kbootpostgres.axon.CreateOrderCommand
+import ch.keepcalm.kbootpostgres.axon.OrderAggregate
 import ch.keepcalm.kbootpostgres.rest.AlbumService
 import ch.keepcalm.kbootpostgres.store.AlbumRepository
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -16,11 +18,20 @@ const val SCHEDULE_TIME = 30000L // 30 Sec
 
 @Component
 @EnableScheduling
-class ScheduledTasks(private val albumRepository: AlbumRepository, private val albumService: AlbumService) {
+class ScheduledTasks(
+    private val albumRepository: AlbumRepository,
+    private val albumService: AlbumService
+    ) {
 
     @OptIn(DelicateCoroutinesApi::class)
     @Scheduled(fixedRate = SCHEDULE_TIME)
     fun fixedRateScheduledTask() {
+
+
+      /*  val createOrderCommand = CreateOrderCommand(orderId = "oderId1", productId = "TODO")
+        OrderAggregate(createOrderCommand)*/
+
+
         GlobalScope.launch {
 
             println("Found ${albumRepository.findAll().count()} - records")
@@ -32,8 +43,8 @@ class ScheduledTasks(private val albumRepository: AlbumRepository, private val a
 
                 while (isActive) { // checks if the coroutine is still active
                     val albumList = albumService.getAllAlbums(userId = album.userId)
-                        .map { postResponse ->
-                            println(postResponse.title)
+                        .map { albumResponse ->
+                            println(albumResponse.title)
                         }
                     println("--------------------->>>>>>>>>>>>>>>>>>>   $albumList <<<<<<<<<<<<<<<<<<<<<<<<------------------")
                 }

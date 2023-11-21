@@ -14,6 +14,7 @@ spring:
     import:
       - classpath:config/common.yaml
       - classpath:config/postgres.yaml
+      - classpath:config/axon.yaml
 
   application:
     name:  kboot-postgres
