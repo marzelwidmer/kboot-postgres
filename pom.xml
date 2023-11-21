@@ -22,6 +22,7 @@
 		<kotlin.version>1.9.20</kotlin.version>
 		<spring-cloud.version>2023.0.0-RC1</spring-cloud.version>
 		<jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
+		<axon.version>4.9.0</axon.version>
 	</properties>
 
 	<dependencies>
@@ -37,7 +38,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-
 
 
 		<dependency>
@@ -60,9 +60,6 @@
 			<groupId>org.jetbrains.kotlinx</groupId>
 			<artifactId>kotlinx-coroutines-reactor</artifactId>
 		</dependency>
-
-
-
 
 
 		<dependency>
@@ -121,9 +118,38 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+
+		<!-- =================  Axon ================= -->
+		<dependency>
+			<groupId>org.axonframework</groupId>
+			<artifactId>axon-spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.axonframework.extensions.reactor</groupId>
+			<artifactId>axon-reactor</artifactId>
+		</dependency>
+		<!--	AXON TEST	-->
+		<dependency>
+			<groupId>org.axonframework</groupId>
+			<artifactId>axon-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- =================  Axon ================= -->
+
 	</dependencies>
+
+
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>org.axonframework</groupId>
+				<artifactId>axon-bom</artifactId>
+				<version>${axon.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
@@ -206,7 +232,13 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
+		<repository>
+			<id>central</id>
+			<name>Maven Central</name>
+			<url>https://repo1.maven.org/maven2</url>
+		</repository>
 	</repositories>
+
 	<pluginRepositories>
 		<pluginRepository>
 			<id>spring-milestones</id>
@@ -216,6 +248,12 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</pluginRepository>
+		<pluginRepository>
+			<id>central</id>
+			<name>Maven Central</name>
+			<url>https://repo1.maven.org/maven2</url>
+		</pluginRepository>
 	</pluginRepositories>
+
 
 </project>

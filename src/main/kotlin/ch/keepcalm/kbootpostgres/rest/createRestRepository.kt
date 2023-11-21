@@ -7,7 +7,7 @@ import org.springframework.web.service.invoker.createClient
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
 
-fun createRestRepository(baseUrl: String = "https://jsonplaceholder.typicode.com"): PostRestRepository {
+fun createRestRepository(baseUrl: String = "https://jsonplaceholder.typicode.com"): AlbumRestRepository {
     val client = WebClient.builder()
         .baseUrl(baseUrl)
         .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)

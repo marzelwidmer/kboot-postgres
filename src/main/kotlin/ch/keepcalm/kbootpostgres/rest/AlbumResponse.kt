@@ -4,7 +4,7 @@ package ch.keepcalm.kbootpostgres.rest
 //    "id": 91,
 //    "title": "repellendus praesentium debitis officiis"
 //},
-data class PostResponse(
+data class AlbumResponse(
     val userId: Int = 0,
     val id: Int = 0,
     val title: String = ""

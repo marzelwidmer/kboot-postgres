@@ -7,3 +7,13 @@ services:
       - 'POSTGRES_USER=postgres'
     ports:
       - '5432:5432'
+
+
+  axonserver:
+    image: 'axoniq/axonserver:latest'
+    ports:
+      - '8124:8124'
+      - '8024:8024'
+      - '8224:8224'
+
+#  $ docker run -d --name my-axon-server -p 8024:8024 -p 8124:8124 axoniq/axonserver
